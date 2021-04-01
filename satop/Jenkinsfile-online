@@ -1,0 +1,138 @@
+pipeline {
+    agent {
+      node {
+        label 'nodejs'
+      }
+    }
+    parameters {
+        string(name:'TAG_NAME',defaultValue: '',description:'')
+    }
+    environment {
+        GITLAB_KEY = 'ssh-clone'
+        KUBECONFIG_CREDENTIAL_ID = 'kubeconfig'
+        REGISTRY = 'reg-online.yhroot.com'
+        APP_NAME = 'typescript-template'
+        CICD_BRANCH = 'test'
+    }
+
+    stages {
+        stage ('checkout scm') {
+            steps {
+                checkout(scm)
+            }
+        }
+
+        stage ('build') {
+            steps {
+                container ('nodejs') {
+                    sh 'bash ./scripts/build-tool.sh build'
+                }
+            }
+        }
+       stage('get app and deploy conf') {
+           steps {
+              sh 'tar czvf node-modules.tar.gz node_modules 1>/dev/null'
+              withCredentials([sshUserPrivateKey(credentialsId: "$GITLAB_KEY", keyFileVariable: 'clonekey',passphraseVariable: '', usernameVariable: 'node')]) {
+                sh "ssh-agent bash -c \"ssh-add $clonekey;export GIT_SSH_COMMAND='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no';rm -rf cicd;git clone -b $CICD_BRANCH ssh://git@gitlab.yhroot.com:2224/satop/cicd.git\""
+              }
+
+              sh "cp -ra cicd/$APP_NAME/config/prod ./apps_config" 
+           }
+       }
+        stage('docker build & push') {
+            steps {
+                container ('nodejs') {
+                     script {
+                         docker.withRegistry("https://$REGISTRY", 'harbor') {
+                             def customImage = docker.build("satop/$APP_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER","--build-arg appname=${APP_NAME} --no-cache -f satop/Dockerfile-online .")
+                             customImage.push()
+                        }
+                     }
+                }
+                echo "生成的镜像地址：$REGISTRY/satop/${APP_NAME}:${TAG_NAME}"
+                
+            }
+        }
+       stage('deploy to production') {
+             when{
+               expression{
+                 return params.TAG_NAME =~ /v.*/
+               }
+             }
+             steps {
+               input(id: 'deploy-to-production', message: 'deploy to production?')
+               kubernetesDeploy(configs: "cicd/$APP_NAME/deploy/prod/**", enableConfigSubstitution: true, kubeconfigId: "$KUBECONFIG_CREDENTIAL_ID")
+             }
+        }
+  }
+}
+
+pipeline {
+    agent {
+      node {
+        label 'nodejs'
+      }
+    }
+    parameters {
+        string(name:'TAG_NAME',defaultValue: '',description:'')
+    }
+    environment {
+        GITLAB_KEY = 'ssh-clone'
+        KUBECONFIG_CREDENTIAL_ID = 'kubeconfig'
+        REGISTRY = 'reg-online.yhroot.com'
+        APP_NAME = 'digital-satellite'
+        CICD_BRANCH = 'test'
+    }
+
+    stages {
+        stage ('checkout scm') {
+            steps {
+                checkout(scm)
+            }
+        }
+
+        stage ('build') {
+            steps {
+                container ('nodejs') {
+                    sh 'bash ./scripts/build-tool.sh build'
+                }
+            }
+        }
+       stage('get app and deploy conf') {
+           steps {
+              sh 'tar czvf node-modules.tar.gz node_modules 1>/dev/null'
+              withCredentials([sshUserPrivateKey(credentialsId: "$GITLAB_KEY", keyFileVariable: 'clonekey',passphraseVariable: '', usernameVariable: 'node')]) {
+                sh "ssh-agent bash -c \"ssh-add $clonekey;export GIT_SSH_COMMAND='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no';rm -rf cicd;git clone -b $CICD_BRANCH ssh://git@gitlab.yhroot.com:2224/satop/cicd.git\""
+              }
+
+              sh "cp -ra cicd/$APP_NAME/config/prod ./apps_config" 
+           }
+       }
+        stage('docker build & push') {
+            steps {
+                container ('nodejs') {
+                     script {
+                         docker.withRegistry("https://$REGISTRY", 'harbor') {
+                             def customImage = docker.build("satop/$APP_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER","--build-arg appname=${APP_NAME} --no-cache -f satop/Dockerfile-online .")
+                             customImage.push()
+                        }
+                     }
+                }
+                echo "生成的镜像地址：$REGISTRY/satop/${APP_NAME}:${TAG_NAME}"
+                
+            }
+        }
+       stage('deploy to production') {
+             when{
+               expression{
+                 return params.TAG_NAME =~ /v.*/
+               }
+             }
+             steps {
+               input(id: 'deploy-to-production', message: 'deploy to production?')
+               kubernetesDeploy(configs: "cicd/$APP_NAME/deploy/prod/**", enableConfigSubstitution: true, kubeconfigId: "$KUBECONFIG_CREDENTIAL_ID")
+             }
+        }
+  }
+}
+
