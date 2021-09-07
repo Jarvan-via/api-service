@@ -32,4 +32,10 @@ router.all('/example', reqHandler(async (req, res) => {
   return res.json(resJSON(Err.CODE.SUCCESS, 'success', { name, age, skills, config }, req.logCtx));
 }));
 
+router.all('/', reqHandler(async (req, res) => {
+  // 在这里写代码
+
+  return res.json(resJSON(Err.CODE.SUCCESS, 'success', null, req.logCtx));
+}));
+
 export default router;
