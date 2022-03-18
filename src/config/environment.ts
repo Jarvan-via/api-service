@@ -5,7 +5,7 @@ import { EnvConfig } from '../types/common';
 
 /** 从环境变量中获取参数并校验和转换 */
 function getEnvConfig(): EnvConfig {
-  const env = process.env.NODE_ENV || 'dev'
+  const env = process.env.NODE_ENV || 'dev';
   const configPath = `./${env}.${env === 'dev' ? 'ts' : 'js'}`;
 
 
