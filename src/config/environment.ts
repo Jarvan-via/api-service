@@ -1,18 +1,17 @@
 import _ from 'lodash';
 
-import pkg from '../../package.json';
 import { EnvConfig } from '../types/common';
 
 
 /** 从环境变量中获取参数并校验和转换 */
 function getEnvConfig(): EnvConfig {
-  const cicdConfigPath = `/yinhe/apps/config/${pkg.name}/environment`;
-  const configPath = `./${process.env.NODE_ENV || 'dev'}.ts`;
+  const env = process.env.NODE_ENV || 'dev'
+  const configPath = `./${env}.${env === 'dev' ? 'ts' : 'js'}`;
 
 
   let envConfig: any;
   try {
-    envConfig = _.extend(require(configPath), require(cicdConfigPath));
+    envConfig = _.extend(require(configPath), {});
   } catch (e) {
     // console.warn(e);
     envConfig = require(configPath);
