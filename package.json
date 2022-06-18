@@ -7,8 +7,7 @@
   "author": "袁勇",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "ts-node main.ts",
-    "jest": "NODE_ENV=dev jest test/routes/*.ts --coverage"
+    "start": "ts-node main.ts"
   },
   "dependencies": {
     "axios": "^0.19.0",
