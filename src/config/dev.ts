@@ -7,12 +7,7 @@ module.exports = {
   LOG_PATH: 'log',
   PORT: 8888,
   REDIS: {
-    host: '172.16.8.161',
-    port: 56379,
-  },
-  SERVICE: {
-    'cmd-list-manager': {
-      baseURL: 'http://cmd-list-manager.test.yhroot.com',
-    },
+    host: '127.0.0.1',
+    port: 6379,
   },
 };
