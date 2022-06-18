@@ -2,11 +2,9 @@ import { Request, Response, RequestHandler, NextFunction } from 'express';
 import { AxiosResponse } from 'axios';
 
 import logger from './logger';
-import config from '../../src/config/environment';
 import Err from '../enums/code';
 import { LogCtx, HttpResponseBase } from '../types/common';
 
-const SYSTEM_ID = config.SYSTEM_ID * 1000;
 
 const entry = (req: Request, res: Response, next: NextFunction) => {
   // inject ip behind Nginx
@@ -45,7 +43,7 @@ function getSN() {
  */
 const resJSON = (code: number, message: string, data: any, logCtx: LogCtx, brief: string = 'success', logLevel: string = 'info'): { code: number; message: string; data: any; } => {
   const result = {
-    code: code && code < 1000 ? code + SYSTEM_ID : code,
+    code,
     message,
     data: data,
   };
