@@ -11,8 +11,5 @@ module.exports = {
     port: 6379,
   },
   SERVICE: {
-    'cmd-list-manager': {
-      baseURL: 'http://cmd-list-manager.prod.yhroot.com',
-    },
   },
 };
