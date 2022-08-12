@@ -25,11 +25,10 @@ export interface EnvConfig {
   LOG_LEVEL: 'info' | 'error' | 'warn' | 'verbose' | 'debug';
   LOG_PATH: string;
   PORT: number;
-  SYSTEM_ID: number;
   SERVICE: ServiceConfig
   REDIS: RedisOptions
 }
 
-export type Service = 'cmd-list-manager'
+export type Service = 'cmd-list-manager';
 
 export type ServiceConfig = Record<Service, AxiosRequestConfig>;

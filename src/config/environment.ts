@@ -17,8 +17,6 @@ function getEnvConfig(): EnvConfig {
     envConfig = require(configPath);
   }
 
-  envConfig.SYSTEM_ID = 90;
-
   return envConfig;
 }
 const envConfig = getEnvConfig();
