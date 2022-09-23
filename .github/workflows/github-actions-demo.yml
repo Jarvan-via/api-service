@@ -26,7 +26,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
           port: ${{ secrets.PORT }}
-          script: whoami
 
           # 由于网路情况，很容易超时，设置为60s
           connect_timeout: 60s
