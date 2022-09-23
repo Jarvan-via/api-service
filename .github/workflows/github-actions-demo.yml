@@ -5,7 +5,7 @@ name: Deploy
 on:
   push: # 监听到 main 分支的 push 动作
     branches:
-      - main
+      - master
 
 # 工作流的任务集配置
 jobs:
