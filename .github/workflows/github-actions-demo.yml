@@ -36,4 +36,4 @@ jobs:
             source ~/.nvm/nvm.sh 
             npm i
             tsc
-            pm2 start build/main.js
+            NODE_ENV=test pm2 start build/main.js --name=template
