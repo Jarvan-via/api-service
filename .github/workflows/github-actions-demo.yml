@@ -31,6 +31,9 @@ jobs:
           # 将工作目录下的文件全部拷贝到部署服务器的工作目录
           script: |
             cd /home/ubuntu/Node-template
+            git pull
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh 
             npm i
             tsc
             pm2 start build/main.js
