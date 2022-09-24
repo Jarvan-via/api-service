@@ -32,8 +32,6 @@ jobs:
 
           # 将工作目录下的文件全部拷贝到部署服务器的工作目录
           script: |
-            ./* => /home/ubuntu
-          # 完成拷贝后在部署服务器执行的命令：进入项目目录，安装生产依赖，并使用 pm2 管理
             cd /home/ubuntu/Node-template
             npm i
             tsc
