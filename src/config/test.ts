@@ -5,7 +5,7 @@ module.exports = {
   NODE_ENV: process.env.NODE_ENV,
   LOG_LEVEL: 'info',
   LOG_PATH: 'logs',
-  PORT: 8888,
+  PORT: 8889,
   REDIS: {
     host: '127.0.0.1',
     port: 6379,
