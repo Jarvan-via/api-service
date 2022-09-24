@@ -17,10 +17,9 @@ jobs:
 
     # 定义 job 的具体步骤
     steps: # 每一个 step 或者是执行一个 action，或者是执行一个命令
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
-
-        with:
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@master
+      with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
