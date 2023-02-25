@@ -26,9 +26,10 @@ export interface EnvConfig {
   LOG_PATH: string;
   PORT: number;
   SERVICE: ServiceConfig
-  REDIS: RedisOptions
+  REDIS_HOST: string,
+  REDIS_PORT: number
 }
 
-export type Service = 'cmd-list-manager';
+export type Service = '';
 
 export type ServiceConfig = Record<Service, AxiosRequestConfig>;

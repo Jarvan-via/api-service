@@ -5,7 +5,7 @@
       "es6"
     ],
     "target": "es6",
-    "module": "commonjs",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "rootDir": "./",
     "outDir": "./build",
@@ -18,14 +18,19 @@
       "./src/types",
       "./node_modules/@types"
     ]
+    
   },
   "include": [
     "test/**/*.ts",
     "src/**/*.ts",
     "router.ts",
     "main.ts",
-    "src/config/**/*.ts",
     "test/**/*.ts",
     "test/lib/simple-console.test.js",
+    //  "src/config/test.js", "src/config/prod.js",  "src/config/dev.js",
+    //  ".eslintrc.js"
   ],
+  "exclude": [
+    "src/**/*.js"
+  ]
 }

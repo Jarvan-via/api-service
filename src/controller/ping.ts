@@ -9,7 +9,7 @@ import env from '../utils/env';
 const router = express.Router();
 
 router.all('/', reqHandler(async (req, res) => {
-  return res.json(resJSON(Err.CODE.SUCCESS, 'success', config, req.logCtx));
+  return res.json(resJSON(Err.CODE.SUCCESS, 'success', process.env, req.logCtx));
 }));
 
 const exampleSchema = Joi.object({

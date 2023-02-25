@@ -16,5 +16,5 @@ export default async function init() {
     env._serv[key as Service] = axios.create({ baseURL: conf.baseURL, headers: conf.headers });
   }
 
-  env._redis = new Redis(config.REDIS);
+  env._redis = new Redis({ host: config.REDIS_HOST, port: config.REDIS_PORT });
 }

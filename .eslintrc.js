@@ -1,11 +1,15 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  parserOptions: {
-    tsconfigRootDir: __dirname,
-    project: ['./tsconfig.json'],
-  },
   plugins: ['@typescript-eslint'],
+  overrides: [{
+    files: ['*.ts'], // Your TypeScript files extension
+    parserOptions: {
+      tsconfigRootDir: __dirname,
+      project: ['./tsconfig.json'],
+    },
+  }],
+  
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -31,11 +35,11 @@ module.exports = {
     'quotes': 'off',
     '@typescript-eslint/quotes': ['error', 'single'],
     'space-before-function-paren': 'off',
-    "no-unused-vars": ["warn", { "vars": "all", "ignoreRestSiblings": false }],
+    'no-unused-vars': ['warn', { 'vars': 'all', 'ignoreRestSiblings': false }],
     '@typescript-eslint/space-before-function-paren': ['error', {
       'anonymous': 'always',
       'named': 'never',
-      'asyncArrow': 'always'
-    }]
-  }
-}
+      'asyncArrow': 'always',
+    }],
+  },
+};
