@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv';
-dotenv.config({ path: `./env/.${process.env.NODE_ENV || 'dev'}.env` });
+dotenv.config({ path: '.env' });
 import config  from './src/config/environment';
 import router from './router';
 
