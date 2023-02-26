@@ -17,7 +17,8 @@ const normal = {
   keepFileExt: true,
   alwaysIncludePattern: true,
   level: 'info',
-  maxLevel: 'info'
+  maxLevel: 'info',
+  numBackups: 7
 };
 
 const justError = {
