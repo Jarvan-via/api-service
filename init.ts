@@ -4,7 +4,6 @@ import axios from 'axios';
 import config from './src/config/environment';
 import env from './src/utils/env';
 import { Service } from './src/types/common';
-import logger from './src/utils/logger';
 
 axios.defaults.timeout = 20000;
 
@@ -20,10 +19,6 @@ export default async function init() {
   env._redis = new Redis({ 
     host: config.REDIS_HOST, 
     port: config.REDIS_PORT, 
-    // reconnectOnError: function(e) {
-    //   logger.error(e)
-    //   return false
-    // },
-    retryStrategy: () => null
+    retryStrategy: () => null,
   });
 }

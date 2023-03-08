@@ -1,7 +1,7 @@
 {
-  "name": "Node-template",
+  "name": "api-service",
   "version": "1.0.0",
-  "description": "Node-template",
+  "description": "api-service",
   "main": "index.js",
   "author": "Jarvan",
   "license": "UNLICENSED",
