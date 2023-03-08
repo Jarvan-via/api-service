@@ -18,7 +18,7 @@ const normal = {
   alwaysIncludePattern: true,
   level: 'info',
   maxLevel: 'info',
-  numBackups: 7
+  numBackups: 7,
 };
 
 const justError = {
@@ -31,8 +31,8 @@ const justError = {
   pattern: 'yyyyMMdd',
   keepFileExt: true,
   alwaysIncludePattern: true,
-  level: "error",
-}
+  level: 'error',
+};
 
 
 const logger = log4js.getLogger(config.SERVICE_NAME);
@@ -44,5 +44,5 @@ log4js.configure({
   categories: { default: { appenders: ['justError', targetType], level: 'ALL' } },
 });
 
-export const getLogger = (name: string) => log4js.getLogger(name)
+export const getLogger = (name: string) => log4js.getLogger(name);
 export default logger;

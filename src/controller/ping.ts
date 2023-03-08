@@ -1,7 +1,6 @@
 import express from 'express';
 import Joi from 'joi';
 
-import config from '../config/environment';
 import { resJSON, reqHandler, handler } from '../utils/helper';
 import Err from '../enums/code';
 import env from '../utils/env';
