@@ -5,7 +5,7 @@ module.exports = {
   LOG_PATH: 'log',
   SERVICE: {
     'example': {
-      baseURL: ''
-    }
+      baseURL: '',
+    },
   },
-}
+};

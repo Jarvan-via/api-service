@@ -17,7 +17,7 @@
     "typeRoots": [
       "./src/types",
       "./node_modules/@types"
-    ]
+    ],
     
   },
   "include": [
@@ -27,7 +27,6 @@
     "main.ts",
     "test/**/*.ts",
     "test/lib/simple-console.test.js",
-    //  "src/config/test.js", "src/config/prod.js",  "src/config/dev.js",
     //  ".eslintrc.js"
   ],
   "exclude": [
