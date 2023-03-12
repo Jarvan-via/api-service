@@ -51,8 +51,7 @@ export async function getChatCompletion(prompt: string, requestType: string): Pr
 
     return r.trim();
   } catch (error) {
-    console.log(error);
-    log.error({ error: error.response?.data, apiKey });
+    log.error({ error: error.response, apiKey });
     return 'something wrong';
   }
 }
