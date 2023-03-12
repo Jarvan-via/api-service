@@ -55,3 +55,23 @@ export async function getChatCompletion(prompt: string, requestType: string): Pr
     return 'something wrong';
   }
 }
+
+export async function imageGenerations(prompt: string, requestType: string) {
+  if (!prompt) return '';
+  const { apiKey, openai } = await getOpenAIClient(requestType);
+
+  try {
+    const response = await openai.createImage({
+      prompt,
+      n: 1,
+      size: '256x256',
+      response_format: 'url',
+    });
+
+    return response.data.data[0].url;
+  } catch (error) {
+    log.error({ error: error.response, apiKey });
+    return 'something wrong';
+  }
+
+}
