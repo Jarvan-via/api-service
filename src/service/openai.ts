@@ -8,7 +8,7 @@ export async function getCompetition(prompt: string, requestType: string) {
   const { apiKey, openai } = await getOpenAIClient(requestType);
   try {
     const response = await openai.createCompletion({
-      model: 'text-davinci-003',
+      model: 'text-davinci-002',
       prompt: `${prompt}?`,
       // temperature: 0,
       max_tokens: 3000,
