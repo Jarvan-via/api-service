@@ -70,7 +70,7 @@ export async function imageGenerations(prompt: string, requestType: string) {
 
     return response.data.data[0].url;
   } catch (error) {
-    log.error({ error: erro, apiKey });
+    log.error({ error: error, apiKey });
     return 'something wrong';
   }
 
