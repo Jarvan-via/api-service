@@ -51,7 +51,7 @@ export async function getChatCompletion(prompt: string, requestType: string): Pr
 
     return r.trim();
   } catch (error) {
-    log.error({ error: error.response, apiKey });
+    log.error({ error: error, apiKey });
     return 'something wrong';
   }
 }
@@ -70,7 +70,7 @@ export async function imageGenerations(prompt: string, requestType: string) {
 
     return response.data.data[0].url;
   } catch (error) {
-    log.error({ error: error.response, apiKey });
+    log.error({ error: erro, apiKey });
     return 'something wrong';
   }
 
