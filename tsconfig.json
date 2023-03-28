@@ -4,9 +4,9 @@
       "es5",
       "es6"
     ],
-    "target": "es6",
-    "module": "CommonJS",
-    "moduleResolution": "node",
+    "target": "ES2022",
+    "module": "Node16",
+    "moduleResolution": "node16",
     "rootDir": "./",
     "outDir": "./build",
     "emitDecoratorMetadata": true,
@@ -31,5 +31,5 @@
   ],
   "exclude": [
     "src/**/*.js"
-  ]
+  ],
 }
