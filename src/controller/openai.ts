@@ -5,6 +5,7 @@ import { resJSON, reqHandler } from '../utils/helper';
 import Err from '../enums/code';
 
 import { getChatCompletion, getCompetition, imageGenerations } from '../service/openai';
+import { conversation } from '../service/conversation';
 
 const router = express.Router();
 
@@ -45,6 +46,20 @@ router.post('/image', reqHandler(async (req, res) => {
   const imageUrl = await imageGenerations(prompt, requestType);
 
   return res.json(resJSON(Err.CODE.SUCCESS, 'success', imageUrl, req.logCtx));
+}));
+
+
+const conversationSchema = Joi.object({
+  requestType: Joi.string().required(),
+  prompt: Joi.string().required(),
+  userId: Joi.string().required(),
+});
+router.post('/conversation', reqHandler(async (req, res) => {
+  const { prompt, userId } = await conversationSchema.validateAsync(req.body);
+
+  const response = await conversation(userId, prompt);
+
+  return res.json(resJSON(Err.CODE.SUCCESS, 'success', response, req.logCtx));
 }));
 
 export default router;
