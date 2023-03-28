@@ -23,13 +23,7 @@ export async function getChtGPT(userId: string) {
     apiKey = await env._redis.lpop('conversation:apikey');
     await env._redis.hset(`conversation:${userId}`, { apikey: apiKey });
   }
-  return new ChatGPTAPI({ 
-    apiKey, getMessageById: getMsgById, 
-    upsertMessage: storeMsg,
-    completionParams: {
-      model: 'gpt-3.5-turbo'
-    } 
-  });
+  return new ChatGPTAPI({ apiKey, getMessageById: getMsgById, upsertMessage: storeMsg });
 }
 
 
