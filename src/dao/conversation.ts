@@ -13,7 +13,7 @@ interface ChatMessage {
 
 type Role = 'user' | 'assistant' | 'system';
 
-const FIVE_MINUTES = 5 * 60; 
+const ONE_DAY = 60 * 60 * 24; 
 
 export async function getChtGPT(userId: string) {
   const { ChatGPTAPI } = await import('chatgpt');
@@ -40,5 +40,5 @@ async function getMsgById(msgId: string): Promise<ChatMessage> {
 
 async function storeMsg(message: ChatMessage) {
   await env._redis.hmset(`msg:${message.id}`, message as any);
-  env._redis.expire(`msg:${message.id}`, FIVE_MINUTES);
+  env._redis.expire(`msg:${message.id}`, ONE_DAY);
 }
