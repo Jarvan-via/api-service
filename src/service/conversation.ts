@@ -7,11 +7,11 @@ export async function conversation(userId: string, message: string) {
     pMessageId,
   ] = await Promise.all([
     getChtGPT(userId),
-    env._redis.get(`conversation:${userId}`),
+    env._redis.get(`conversation:msg:${userId}`),
   ]);
 
   const { id, text } = await chatGPT.sendMessage(message, { parentMessageId: pMessageId });
-  env._redis.set(`conversation:${userId}`, id );
+  env._redis.set(`conversation:msg:${userId}`, id );
 
   return text;
 }
