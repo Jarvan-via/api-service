@@ -16,7 +16,7 @@ const OpenaiRequestSchema = Joi.object({
 });
 
 
-router.post('/openai', reqHandler(async (req, res) => {
+router.post('/chat', reqHandler(async (req, res) => {
   const { requestType, prompt, funcType } = await OpenaiRequestSchema.validateAsync(req.body);
 
   let response: string;

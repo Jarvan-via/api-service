@@ -1,13 +1,18 @@
-# api-service
+# API-SERVICE
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
 Provide OpenAI API for services, and subsequently access more AI-related API
+## Currently Implemented Functions
+[API](#https://github.com/Jarvan-via/api-service/blob/master/API.md)
+
 
 ## Table of Contents
 - [Prerequisites](#Prerequisites)
 - [Install](#install)
 - [Usage](#usage)
+- [Deploy On Unix Platform](#deploy-on-unix-platform)
+- [Check Your Service](#check-your-service)
 - [Maintainers](#maintainers)
 - [Contributing](#contributing)
 - [License](#license)
@@ -22,6 +27,7 @@ Recommend Node 18
 ```
 npm i 
 npm i nodemon -g
+npm i typescript -g
 ```
 
 ## Usage
@@ -33,12 +39,30 @@ touch .env
 #.env
 PORT=8080
 REDIS_HOST=127.0.0.1
-REDIS_PORT=3069
+REDIS_PORT=6379
 ```
 ```
 npm run start
 ```
-
+## Deploy On Unix Platform
+```
+touch .env
+```
+```
+#.env
+PORT=8080
+REDIS_HOST=127.0.0.1
+REDIS_PORT=6379
+```
+```
+npm i pm2 -g
+tsc
+NODE_ENV=prod pm2 start build/main.js --name=api-service
+```
+## Check Your Service
+```
+curl --location --request GET 'http://host:8080/ping'
+```
 ## Maintainers
 
 [@Jarvan-via](https://github.com/Jarvan-via)
