@@ -4,7 +4,7 @@
 
 Provide OpenAI API for services, and subsequently access more AI-related API
 ## Currently Implemented Functions
-[API](#https://github.com/Jarvan-via/api-service/blob/master/API.md)
+[API-DOC](#https://github.com/Jarvan-via/api-service/blob/master/API.md)
 
 
 ## Table of Contents
