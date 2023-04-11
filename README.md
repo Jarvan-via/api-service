@@ -61,7 +61,7 @@ NODE_ENV=prod pm2 start build/main.js --name=api-service
 ```
 ## Check Your Service
 ```
-curl --location --request GET 'http://host:8080/ping'
+curl --location --request GET 'http://localhost:8080/ping'
 ```
 ## Maintainers
 
