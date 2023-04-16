@@ -80,4 +80,4 @@ Don't forget to give the project a star! Thanks again!
 
 ## License
 
-MIT © 2023 Jarvan-via
+GPL © 2023 Jarvan-via
