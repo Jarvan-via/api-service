@@ -1,0 +1,32 @@
+version: '3'
+networks:
+    api-service: {}
+
+services:
+  api-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./log:/home/node/app/src/log
+    container_name: api-service
+    ports:
+      - '8888:8888'
+    networks:
+      - api-service
+    depends_on:
+      - redis
+    command: npm run prod
+  
+  redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+    - "6379:6379"
+    volumes:
+      - ~/data:/data
+      - ~/redis-6.0.6/:/usr/local/etc/redis
+    networks:
+      - api-service 
+    command: redis-server /usr/local/etc/redis/redis.conf --save 60 1

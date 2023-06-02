@@ -6,7 +6,9 @@
   "author": "Jarvan",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "nodemon main.ts"
+    "start": "nodemon main.ts",
+    "prod": "node ./build/main.js",
+    "build": "tsc"
   },
   "engines": {
     "node": ">=16.x"
