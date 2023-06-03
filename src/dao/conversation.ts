@@ -22,7 +22,7 @@ export async function getChtGPT(userId: string) {
   let apiKey = await env._redis.hget(`conversation:${userId}`, 'apikey');
   if (!apiKey) {
     const apiKeys = await env._redis.lrange('conversation:apikey', 0, -1);
-    apiKey = apiKeys[random(0, apiKeys.length)];
+    apiKey = apiKeys[random(0, apiKeys.length) - 1];
     await env._redis.hset(`conversation:${userId}`, { apikey: apiKey });
   }
   return new ChatGPTAPI({ apiKey, getMessageById: getMsgById, upsertMessage: storeMsg });
