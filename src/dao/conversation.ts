@@ -25,7 +25,13 @@ export async function getChtGPT(userId: string) {
     apiKey = apiKeys[random(0, apiKeys.length - 1)];
     await env._redis.hset(`conversation:${userId}`, { apikey: apiKey });
   }
-  return new ChatGPTAPI({ apiKey, getMessageById: getMsgById, upsertMessage: storeMsg });
+  return new ChatGPTAPI({ 
+    apiKey, 
+    completionParams: {
+      model: 'gpt-3.5-turbo-16k',
+    },
+    getMessageById: getMsgById, 
+    upsertMessage: storeMsg });
 }
 
 
