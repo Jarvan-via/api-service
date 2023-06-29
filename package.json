@@ -14,7 +14,7 @@
     "node": ">=16.x"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^1.4.0",
     "chatgpt": "^5.1.2",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",
