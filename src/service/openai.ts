@@ -33,7 +33,7 @@ export async function getChatCompletion(prompt: string, requestType: string): Pr
   const { apiKey, openai } = await getOpenAIClient(requestType);
   try {
     const response = await openai.createChatCompletion({
-      model: 'gpt-3.5-turbo-0613',
+      model: 'gpt-3.5-turbo-1106',
       messages: [{
         role: 'user',
         content: prompt,
