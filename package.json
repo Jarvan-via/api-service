@@ -23,7 +23,7 @@
     "influx": "^5.0.7",
     "ioredis": "^4.23.0",
     "isomorphic-fetch": "^3.0.0",
-    "jest": "^26.6.3",
+    "jest": "^29.7.0",
     "joi": "^17.3.0",
     "jsonwebtoken": "^9.0.0",
     "lodash": "^4.17.11",
