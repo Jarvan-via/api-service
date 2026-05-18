@@ -19,7 +19,7 @@
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",
     "express": "^4.17.1",
-    "formidable": "^2.0.1",
+    "formidable": "^3.2.4",
     "influx": "^5.0.7",
     "ioredis": "^4.23.0",
     "isomorphic-fetch": "^3.0.0",
